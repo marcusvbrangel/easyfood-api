@@ -1,0 +1,164 @@
+
+========================================================================================
+
+
+Spring Initializer
+https://start.spring.io/
+
+Spring Boot Reference Documentation
+https://docs.spring.io/spring-boot/docs/current/reference/html/index.html
+
+Common Application Properties
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties
+
+
+
+
+========================================================================================
+
+docker pull mysql:8.0.4
+
+docker image rm 8251f0669c6e
+
+docker image ls
+
+
+
+========================================================================================
+
+git version
+
+git init
+
+git status
+
+git add .
+
+git commit -m "feat: initial commit"
+
+git switch -c development
+
+git branch
+
+git config --global user.email "marcus.vbrangel@gmail.com"
+
+git config --global user.name "Marcus Rangel"
+
+
+========================================================================================
+
+…or create a new repository on the command line
+
+echo "# easyfood-api" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:marcusvbrangel/easyfood-api.git
+git push -u origin main
+
+
+========================================================================================
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:marcusvbrangel/easyfood-api.git
+git branch -M main
+git push -u origin main
+
+
+The authenticity of host 'github.com (20.201.28.151)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+
+
+========================================================================================
+
+POSTGRES
+
+The PostgreSQL object-relational database system provides reliability and data integrity.
+
+https://hub.docker.com/_/postgres
+
+
+
+docker pull postgres:13.14-bullseye
+
+docker pull postgres:14.6
+
+
+docker container run -d \
+	--name postgres-local \
+	-e POSTGRES_PASSWORD=1234 \
+	-p 5432:5432 \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
+	-v /home/wolf/pgdata/mount:/var/lib/postgresql/data \
+	--restart unless-stopped \
+	postgres:14.6
+
+
+
+
+
+elestio/pgadmin
+https://hub.docker.com/r/elestio/pgadmin
+
+
+
+pgAdmin - PostgreSQL Tools
+https://www.pgadmin.org/
+
+
+
+
+========================================================================================
+
+
+2.5.6.2 More Topics on Deploying MySQL Server with Docker
+https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html
+
+
+
+========================================================================================
+
+
+DBeaver Community 24.0.3
+
+https://dbeaver.io/download/
+
+
+========================================================================================
+
+
+
+========================================================================================
+
+
+
+
+========================================================================================
+
+
+
+========================================================================================
+
+
+
+
+========================================================================================
+
+
+
+
+========================================================================================
+
+
+
+========================================================================================
+
+
