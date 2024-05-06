@@ -1,7 +1,9 @@
 package com.marvin.easyfoodapi.jpa;
 
 import com.marvin.easyfoodapi.EasyFoodApiApplication;
+import com.marvin.easyfoodapi.domain.model.Cozinha;
 import com.marvin.easyfoodapi.domain.model.Restaurante;
+import com.marvin.easyfoodapi.domain.repository.CozinhaRepository;
 import com.marvin.easyfoodapi.domain.repository.RestauranteRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -22,11 +24,13 @@ public class RestauranteMain {
 
         RestauranteRepository restauranteRepository = applicationContext.getBean(RestauranteRepository.class);
 
+        CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+
         // Consultar restaurantes...
         listar(restauranteRepository);
 
         // Adicionar restaurante...
-        adicionar(restauranteRepository);
+        adicionar(restauranteRepository, cozinhaRepository);
 
         // Buscar restaurante...
         buscar(restauranteRepository);
@@ -52,7 +56,7 @@ public class RestauranteMain {
         for (Restaurante restaurante : restaurantes) {
 
             System.out.println(restaurante.getId() + " - " + restaurante.getNome() + " - "
-                + restaurante.getTaxaFrete());
+                + restaurante.getTaxaFrete() + " - " + restaurante.getCozinha().getNome());
 
         }
 
@@ -60,11 +64,15 @@ public class RestauranteMain {
 
     }
 
-    private static void adicionar(RestauranteRepository restauranteRepository) {
+    private static void adicionar(RestauranteRepository restauranteRepository, CozinhaRepository cozinhaRepository) {
 
         Restaurante restaurante = new Restaurante();
         restaurante.setNome("Fumaça");
         restaurante.setTaxaFrete(BigDecimal.valueOf(3.17));
+
+        Cozinha cozinha = cozinhaRepository.buscar(3L);
+
+        restaurante.setCozinha(cozinha);
 
         Restaurante restauranteAdicionado = restauranteRepository.salvar(restaurante);
 
