@@ -1,4 +1,4 @@
-package com.marvin.easyfoodapi.domain.model.repository;
+package com.marvin.easyfoodapi.domain.repository;
 
 import com.marvin.easyfoodapi.domain.model.Cozinha;
 

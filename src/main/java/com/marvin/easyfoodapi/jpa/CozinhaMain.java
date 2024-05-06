@@ -2,7 +2,7 @@ package com.marvin.easyfoodapi.jpa;
 
 import com.marvin.easyfoodapi.EasyFoodApiApplication;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
-import com.marvin.easyfoodapi.domain.model.repository.CozinhaRepository;
+import com.marvin.easyfoodapi.domain.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;

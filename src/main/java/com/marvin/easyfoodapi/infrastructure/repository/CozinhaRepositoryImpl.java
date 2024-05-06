@@ -1,7 +1,7 @@
 package com.marvin.easyfoodapi.infrastructure.repository;
 
 import com.marvin.easyfoodapi.domain.model.Cozinha;
-import com.marvin.easyfoodapi.domain.model.repository.CozinhaRepository;
+import com.marvin.easyfoodapi.domain.repository.CozinhaRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
