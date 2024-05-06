@@ -6,14 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 @Entity
-public class Restaurante {
+public class Estado {
 
     @EqualsAndHashCode.Include
     @Id
@@ -23,11 +22,7 @@ public class Restaurante {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(nullable = false)
-    private BigDecimal taxaFrete;
-
-    @ManyToOne
-    @JoinColumn(name = "cozinha_id", nullable = false)
-    private Cozinha cozinha;
+    @Column(nullable = false, length = 2, unique = true)
+    private String sigla;
 
 }
