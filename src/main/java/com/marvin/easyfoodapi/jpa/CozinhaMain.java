@@ -2,6 +2,7 @@ package com.marvin.easyfoodapi.jpa;
 
 import com.marvin.easyfoodapi.EasyFoodApiApplication;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
+import com.marvin.easyfoodapi.domain.model.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
@@ -16,31 +17,33 @@ public class CozinhaMain {
                 .web(WebApplicationType.NONE)
                 .run(args);
 
-        CozinhaManager cozinhaManager = applicationContext.getBean(CozinhaManager.class);
+        // CozinhaManager cozinhaRepository = applicationContext.getBean(CozinhaManager.class);
+
+        CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
         // Consultar cozinhas...
-        listar(cozinhaManager);
+        listar(cozinhaRepository);
 
         // Adicionar cozinha...
-        adicionar(cozinhaManager);
+        adicionar(cozinhaRepository);
 
         // Buscar cozinha...
-        buscar(cozinhaManager);
+        buscar(cozinhaRepository);
 
         // Alterar cozinha...
-        alterar(cozinhaManager);
+        alterar(cozinhaRepository);
 
         // Excluir cozinha...
-        excluir(cozinhaManager);
+        excluir(cozinhaRepository);
 
         // Consultar cozinhas...
-        listar(cozinhaManager);
+        listar(cozinhaRepository);
 
     }
 
-    private static void listar(CozinhaManager cozinhaManager) {
+    private static void listar(CozinhaRepository cozinhaRepository) {
 
-        List<Cozinha> cozinhas = cozinhaManager.listar();
+        List<Cozinha> cozinhas = cozinhaRepository.listar();
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Listar cozinhas ----- \n");
@@ -55,12 +58,12 @@ public class CozinhaMain {
 
     }
 
-    private static void adicionar(CozinhaManager cozinhaManager) {
+    private static void adicionar(CozinhaRepository cozinhaRepository) {
 
         Cozinha cozinha = new Cozinha();
         cozinha.setNome("Argentina");
 
-        Cozinha cozinhaAdicionada = cozinhaManager.salvar(cozinha);
+        Cozinha cozinhaAdicionada = cozinhaRepository.salvar(cozinha);
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Adicionar cozinha ----- \n");
@@ -71,9 +74,9 @@ public class CozinhaMain {
 
     }
 
-    private static void buscar(CozinhaManager cozinhaManager) {
+    private static void buscar(CozinhaRepository cozinhaRepository) {
 
-        Cozinha cozinha = cozinhaManager.buscar(2L);
+        Cozinha cozinha = cozinhaRepository.buscar(2L);
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Buscar cozinha ----- \n");
@@ -84,13 +87,13 @@ public class CozinhaMain {
 
     }
 
-    private static void alterar(CozinhaManager cozinhaManager) {
+    private static void alterar(CozinhaRepository cozinhaRepository) {
 
-        Cozinha cozinha = cozinhaManager.buscar(2L);
+        Cozinha cozinha = cozinhaRepository.buscar(2L);
 
         cozinha.setNome(cozinha.getNome() + " Alterada");
 
-        Cozinha cozinhaAlterada = cozinhaManager.salvar(cozinha);
+        Cozinha cozinhaAlterada = cozinhaRepository.salvar(cozinha);
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Alterar cozinha ----- \n");
@@ -101,12 +104,12 @@ public class CozinhaMain {
 
     }
 
-    private static void excluir(CozinhaManager cozinhaManager) {
+    private static void excluir(CozinhaRepository cozinhaRepository) {
 
         Cozinha cozinha = new Cozinha();
         cozinha.setId(1L);
 
-        cozinhaManager.excluir(cozinha);
+        cozinhaRepository.excluir(cozinha);
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Excluir cozinha ----- \n");
