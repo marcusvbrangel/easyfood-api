@@ -1,4 +1,15 @@
 
+
+========================================================================================
+
+Ctrl + /                    Comment/uncomment with line comment
+Ctrl + Alt + O              Optimize imports
+Ctrl + Alt + I              Auto-indent line(s)
+
+
+
+
+
 ========================================================================================
 
 
@@ -19,6 +30,13 @@ https://sdkman.io/
 The Spring PetClinic Community
 https://spring-petclinic.github.io/
 https://github.com/spring-petclinic
+
+
+
+Postman Learning Center
+https://learning.postman.com/docs/introduction/overview/
+
+
 
 
 
@@ -93,7 +111,7 @@ Generating a new SSH key and adding it to the ssh-agent
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 
-    
+
 
 ========================================================================================
 
