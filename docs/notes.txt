@@ -2,11 +2,11 @@
 
 ========================================================================================
 
-Ctrl + /                    Comment/uncomment with line comment
-Ctrl + Alt + O              Optimize imports
-Ctrl + Alt + I              Auto-indent line(s)
+Ctrl + /                                Comment/uncomment with line comment
+Ctrl + Alt + O                          Optimize imports
+Ctrl + Alt + I                          Auto-indent line(s)
 
-
+Ctrl + Shift + seta para cima/baixo     Auto-indent line(s)
 
 
 
