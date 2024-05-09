@@ -2,6 +2,7 @@ package com.marvin.easyfoodapi.infrastructure.repository;
 
 import com.marvin.easyfoodapi.domain.model.Cidade;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
+import com.marvin.easyfoodapi.domain.repository.CidadeRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-public class CidadeRepositoryImpl {
+public class CidadeRepositoryImpl implements CidadeRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

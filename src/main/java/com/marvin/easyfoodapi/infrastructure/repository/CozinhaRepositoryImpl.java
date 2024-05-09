@@ -17,33 +17,22 @@ public class CozinhaRepositoryImpl implements CozinhaRepository {
     private EntityManager entityManager;
 
     public List<Cozinha> listar() {
-
         TypedQuery<Cozinha> query = entityManager.createQuery("from Cozinha", Cozinha.class);
-
         return query.getResultList();
-
     }
 
     @Transactional
     public Cozinha salvar(Cozinha cozinha) {
-
         return entityManager.merge(cozinha);
-
     }
 
     public Cozinha buscar(Long id) {
-
         return entityManager.find(Cozinha.class, id);
-
     }
 
     @Transactional
     public void excluir(Cozinha cozinha) {
-
-        Cozinha cozinhaParaExcluir = buscar(cozinha.getId());
-
-        entityManager.remove(cozinhaParaExcluir);
-
+        entityManager.remove(cozinha);
     }
 
 }

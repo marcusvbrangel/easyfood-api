@@ -109,7 +109,7 @@ public class CozinhaMain {
         Cozinha cozinha = new Cozinha();
         cozinha.setId(1L);
 
-        cozinhaRepository.excluir(cozinha);
+//        cozinhaRepository.excluir(cozinha);
 
         System.out.println("\n------------------------------------------------------------\n");
         System.out.println("----- Excluir cozinha ----- \n");

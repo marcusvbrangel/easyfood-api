@@ -1,7 +1,6 @@
 package com.marvin.easyfoodapi.domain.repository;
 
 import com.marvin.easyfoodapi.domain.model.Cidade;
-import com.marvin.easyfoodapi.domain.model.Estado;
 
 import java.util.List;
 
@@ -13,6 +12,6 @@ public interface CidadeRepository {
 
     Cidade salvar(Cidade cidade);
 
-    void excluir(Estado estado);
+    void excluir(Cidade estado);
 
 }
