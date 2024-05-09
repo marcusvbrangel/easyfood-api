@@ -1,6 +1,7 @@
 package com.marvin.easyfoodapi.api.controller;
 
 import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
+import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
 import com.marvin.easyfoodapi.domain.service.CozinhaService;
@@ -34,7 +35,7 @@ public class CozinhaController {
 //    }
 
     @RequestMapping("/{cozinhaId}")
-    public ResponseEntity<Cozinha> buscar(@PathVariable("cozinhaId") Long id) {
+    public ResponseEntity<?> buscar(@PathVariable("cozinhaId") Long id) {
 
 //        return ResponseEntity.status(HttpStatus.OK).body(cozinha);
 //        return ResponseEntity.ok(cozinha);
@@ -44,50 +45,61 @@ public class CozinhaController {
             return ResponseEntity.ok(cozinha);
 
         } catch (EntidadeNaoEcontradaException e) {
-            return ResponseEntity.notFound().build();
+            System.out.println("Cozinha buscar: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
 
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Cozinha adicionar(@RequestBody Cozinha cozinha) {
-        return cozinhaService.salvar(cozinha);
+//    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> adicionar(@RequestBody Cozinha cozinha) {
+
+        try {
+            cozinha = cozinhaService.salvar(cozinha);
+            return ResponseEntity.status(HttpStatus.CREATED).body(cozinha);
+
+        } catch (EntidadeExistenteException e) {
+            System.out.println("Cozinha adicionar: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
+
     }
 
     @PutMapping("/{cozinhaId}")
-    public ResponseEntity<Cozinha> atualizar(@PathVariable("cozinhaId") Long id,
+    public ResponseEntity<?> atualizar(@PathVariable("cozinhaId") Long id,
                                              @RequestBody Cozinha cozinha) {
 
-        Cozinha cozinhaAtual = cozinhaService.buscar(id);
+        try {
+            Cozinha cozinhaParaAtualizar = cozinhaService.buscar(id);
+            BeanUtils.copyProperties(cozinha, cozinhaParaAtualizar, "id");
+            cozinhaParaAtualizar = cozinhaService.salvar(cozinhaParaAtualizar);
+            return ResponseEntity.status(HttpStatus.OK).body(cozinhaParaAtualizar);
 
-        if (cozinhaAtual != null) {
-
-            // cozinhaAtual.setNome(cozinha.getNome());
-            BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
-
-            cozinhaAtual = cozinhaService.salvar(cozinhaAtual);
-
-            return ResponseEntity.ok(cozinhaAtual);
-
+        } catch (EntidadeNaoEcontradaException e) {
+            System.out.println("Cozinha atualizar: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (EntidadeExistenteException e) {
+            System.out.println("Cozinha atualizar: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
-
-        return ResponseEntity.notFound().build();
 
     }
 
     @DeleteMapping("/{cozinhaId}")
-    public ResponseEntity<Cozinha> excluir(@PathVariable("cozinhaId") Long id) {
+    public ResponseEntity<?> excluir(@PathVariable("cozinhaId") Long id) {
 
         try {
             cozinhaService.excluir(id);
             return ResponseEntity.noContent().build();
 
         } catch (EntidadeNaoEcontradaException e) {
-            return ResponseEntity.notFound().build();
+            System.out.println("Cozinha excluir: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 
         } catch (EntidadeEmUsoException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            System.out.println("Cozinha excluir: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 
         }
 

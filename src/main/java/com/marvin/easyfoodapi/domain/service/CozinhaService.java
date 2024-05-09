@@ -1,11 +1,12 @@
 package com.marvin.easyfoodapi.domain.service;
 
 import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
+import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
 import com.marvin.easyfoodapi.domain.repository.CozinhaRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,22 @@ public class CozinhaService {
 
     public Cozinha salvar(Cozinha cozinha) {
 
-        return cozinhaRepository.salvar(cozinha);
+        // todo: capturar todos os possiveis erros abaixo... incluir/alterar...
+        try {
+            cozinha = cozinhaRepository.salvar(cozinha);
+            System.out.println("service salvar 00");
+
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("service salvar 01: " + e.getMessage());
+            throw new EntidadeExistenteException(
+                String.format("Registro de nome %s já existente", cozinha.getNome()));
+        } catch (ConstraintViolationException e) {
+            System.out.println("service salvar 02: " + e.getMessage());
+            throw new EntidadeExistenteException(
+                String.format("Registro de nome %s já existente", cozinha.getNome()));
+        }
+
+        return cozinha;
 
     }
 
@@ -34,7 +50,9 @@ public class CozinhaService {
         Cozinha cozinha = cozinhaRepository.buscar(id);
 
         if (cozinha == null) {
-            throw new EmptyResultDataAccessException(1);
+//            throw new EmptyResultDataAccessException(1);
+            throw new EntidadeNaoEcontradaException(
+                String.format("Registro de código %d não pode ser encontrado.", id));
         }
 
         return cozinha;
@@ -48,7 +66,7 @@ public class CozinhaService {
             Cozinha cozinha = this.buscar(id);
             cozinhaRepository.excluir(cozinha);
 
-        } catch (EmptyResultDataAccessException e) {
+        } catch (EntidadeNaoEcontradaException e) {
 
             throw new EntidadeNaoEcontradaException(
                 String.format("Registro de código %d não pode ser encontrado.", id));
@@ -56,7 +74,7 @@ public class CozinhaService {
         } catch (DataIntegrityViolationException e) {
 
             throw new EntidadeEmUsoException(
-                String.format("Registro de código %d não pode ser excluída, pois está em uso.", id));
+                String.format("Registro de código %d não pode ser excluído, pois está em uso.", id));
         }
 
     }
