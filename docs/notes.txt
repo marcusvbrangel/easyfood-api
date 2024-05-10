@@ -6,6 +6,10 @@ Ctrl + /                                Comment/uncomment with line comment
 Ctrl + Alt + O                          Optimize imports
 Ctrl + Alt + I                          Auto-indent line(s)
 
+Ctrl + D                                Duplicate current line or selected block
+Ctrl + Y                                Delete line at caret
+Shift + Enter                           Start new line
+
 Ctrl + Shift + seta para cima/baixo     Auto-indent line(s)
 
 
@@ -35,6 +39,16 @@ https://github.com/spring-petclinic
 
 Postman Learning Center
 https://learning.postman.com/docs/introduction/overview/
+
+
+WIRE MOCK CLOUD
+https://www.wiremock.io/
+
+LOCALSTACK
+https://www.localstack.cloud/
+
+NGROK
+https://ngrok.com/
 
 
 
