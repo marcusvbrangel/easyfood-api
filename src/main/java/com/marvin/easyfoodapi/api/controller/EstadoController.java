@@ -1,7 +1,5 @@
 package com.marvin.easyfoodapi.api.controller;
 
-import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
-import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.model.Estado;
 import com.marvin.easyfoodapi.domain.service.EstadoService;
@@ -12,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/estados", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,76 +27,59 @@ public class EstadoController {
         return estadoService.listar();
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @RequestMapping("/{cozinhaId}")
-//    public Cozinha buscar(@PathVariable("cozinhaId") Long id) {
-//        return cozinhaRepository.buscar(id);
-//    }
-
     @RequestMapping("/{estadoId}")
     public ResponseEntity<?> buscar(@PathVariable("estadoId") Long id) {
 
-        try {
-            Estado estado = estadoService.buscar(id);
-            return ResponseEntity.ok(estado);
+        Optional<Estado> estado = estadoService.buscar(id);
 
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Estado buscar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        if (estado.isPresent()) {
+            return new ResponseEntity<>(estado.get(), HttpStatus.OK);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @PostMapping
     public ResponseEntity<?> adicionar(@RequestBody Estado estado) {
-
-        try {
-            estado = estadoService.salvar(estado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(estado);
-
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Estado adicionar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }
+        estado = estadoService.salvar(estado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(estado);
 
     }
 
     @PutMapping("/{estadoId}")
     public ResponseEntity<?> atualizar(@PathVariable("estadoId") Long id,
-                                             @RequestBody Estado estado) {
+                                       @RequestBody Estado estado) {
 
-        try {
-            Estado estadoParaAtualizar = estadoService.buscar(id);
-            BeanUtils.copyProperties(estado, estadoParaAtualizar, "id");
-            estadoParaAtualizar = estadoService.salvar(estadoParaAtualizar);
-            return ResponseEntity.status(HttpStatus.OK).body(estadoParaAtualizar);
+        Optional<Estado> estadoParaAtualizar = estadoService.buscar(id);
 
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Estado atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Estado atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        if (estadoParaAtualizar.isPresent()) {
+            BeanUtils.copyProperties(estado, estadoParaAtualizar.get(), "id");
+            estado = estadoService.salvar(estadoParaAtualizar.get());
+            return ResponseEntity.status(HttpStatus.OK).body(estado);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @DeleteMapping("/{estadoId}")
     public ResponseEntity<?> excluir(@PathVariable("estadoId") Long id) {
 
-        try {
-            estadoService.excluir(id);
+        Optional<Estado> estado = estadoService.buscar(id);
+
+        if (estado.isPresent()) {
+            estadoService.excluir(estado.get().getId());
             return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Estado excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-
-        } catch (EntidadeEmUsoException e) {
-            System.out.println("Estado excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 

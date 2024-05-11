@@ -10,9 +10,9 @@ Ctrl + D                                Duplicate current line or selected block
 Ctrl + Y                                Delete line at caret
 Shift + Enter                           Start new line
 
-Ctrl + Shift + seta para cima/baixo     Auto-indent line(s)
+Ctrl + Shift + seta para cima/baixo     Mover linha/bloco
 
-
+Alt + Enter                             Importar
 
 ========================================================================================
 
@@ -50,7 +50,13 @@ https://www.localstack.cloud/
 NGROK
 https://ngrok.com/
 
+BAELDUNG
+https://www.baeldung.com/
 
+
+NOTA FACIL
+O jeito mais fácil de emitir suas notas fiscais
+https://notafacil.io/
 
 
 
@@ -193,7 +199,13 @@ echo $SERVER_PORT
 ========================================================================================
 
 
-
+{
+    "timestamp": "2024-05-11T20:01:05.661+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "message": "No message available",
+    "path": "/cozinhas/2"
+}
 
 ========================================================================================
 

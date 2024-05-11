@@ -1,7 +1,5 @@
 package com.marvin.easyfoodapi.api.controller;
 
-import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
-import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.model.Cozinha;
 import com.marvin.easyfoodapi.domain.service.CozinhaService;
@@ -12,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/cozinhas", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,41 +27,25 @@ public class CozinhaController {
         return cozinhaService.listar();
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @RequestMapping("/{cozinhaId}")
-//    public Cozinha buscar(@PathVariable("cozinhaId") Long id) {
-//        return cozinhaRepository.buscar(id);
-//    }
-
     @RequestMapping("/{cozinhaId}")
     public ResponseEntity<?> buscar(@PathVariable("cozinhaId") Long id) {
 
-//        return ResponseEntity.status(HttpStatus.OK).body(cozinha);
-//        return ResponseEntity.ok(cozinha);
+        Optional<Cozinha> cozinha = cozinhaService.buscar(id);
 
-        try {
-            Cozinha cozinha = cozinhaService.buscar(id);
-            return ResponseEntity.ok(cozinha);
-
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Cozinha buscar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        if (cozinha.isPresent()) {
+            return new ResponseEntity<>(cozinha.get(), HttpStatus.OK);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> adicionar(@RequestBody Cozinha cozinha) {
-
-        try {
-            cozinha = cozinhaService.salvar(cozinha);
-            return ResponseEntity.status(HttpStatus.CREATED).body(cozinha);
-
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Cozinha adicionar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }
+        cozinha = cozinhaService.salvar(cozinha);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cozinha);
 
     }
 
@@ -70,38 +53,33 @@ public class CozinhaController {
     public ResponseEntity<?> atualizar(@PathVariable("cozinhaId") Long id,
                                              @RequestBody Cozinha cozinha) {
 
-        try {
-            Cozinha cozinhaParaAtualizar = cozinhaService.buscar(id);
-            BeanUtils.copyProperties(cozinha, cozinhaParaAtualizar, "id");
-            cozinhaParaAtualizar = cozinhaService.salvar(cozinhaParaAtualizar);
-            return ResponseEntity.status(HttpStatus.OK).body(cozinhaParaAtualizar);
+        Optional<Cozinha> cozinhaParaAtualizar = cozinhaService.buscar(id);
 
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Cozinha atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Cozinha atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        if (cozinhaParaAtualizar.isPresent()) {
+            BeanUtils.copyProperties(cozinha, cozinhaParaAtualizar.get(), "id");
+            cozinha = cozinhaService.salvar(cozinhaParaAtualizar.get());
+            return ResponseEntity.status(HttpStatus.OK).body(cozinha);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @DeleteMapping("/{cozinhaId}")
     public ResponseEntity<?> excluir(@PathVariable("cozinhaId") Long id) {
 
-        try {
-            cozinhaService.excluir(id);
+        Optional<Cozinha> cozinha = cozinhaService.buscar(id);
+
+        if (cozinha.isPresent()) {
+            cozinhaService.excluir(cozinha.get().getId());
             return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Cozinha excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-
-        } catch (EntidadeEmUsoException e) {
-            System.out.println("Cozinha excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 

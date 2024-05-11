@@ -1,7 +1,5 @@
 package com.marvin.easyfoodapi.api.controller;
 
-import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
-import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.model.Restaurante;
 import com.marvin.easyfoodapi.domain.service.RestauranteService;
@@ -12,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/restaurantes", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,83 +27,59 @@ public class RestauranteController {
         return restauranteService.listar();
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @RequestMapping("/{cozinhaId}")
-//    public Cozinha buscar(@PathVariable("cozinhaId") Long id) {
-//        return cozinhaRepository.buscar(id);
-//    }
-
     @RequestMapping("/{restauranteId}")
     public ResponseEntity<?> buscar(@PathVariable("restauranteId") Long id) {
 
-//        return ResponseEntity.status(HttpStatus.OK).body(cozinha);
-//        return ResponseEntity.ok(cozinha);
+        Optional<Restaurante> restaurante = restauranteService.buscar(id);
 
-        try {
-            Restaurante restaurante = restauranteService.buscar(id);
-            return ResponseEntity.ok(restaurante);
-
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Restaurante buscar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        if (restaurante.isPresent()) {
+            return new ResponseEntity<>(restaurante.get(), HttpStatus.OK);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> adicionar(@RequestBody Restaurante restaurante) {
-
-        try {
-            restaurante = restauranteService.salvar(restaurante);
-            return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
-
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Restaurante adicionar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Restaurante adicionar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }
+        restaurante = restauranteService.salvar(restaurante);
+        return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
 
     }
 
     @PutMapping("/{restauranteId}")
     public ResponseEntity<?> atualizar(@PathVariable("restauranteId") Long id,
-                                             @RequestBody Restaurante restaurante) {
+                                       @RequestBody Restaurante restaurante) {
 
-        try {
-            Restaurante restauranteParaAtualizar = restauranteService.buscar(id);
-            BeanUtils.copyProperties(restaurante, restauranteParaAtualizar, "id");
-            restauranteParaAtualizar = restauranteService.salvar(restauranteParaAtualizar);
-            return ResponseEntity.status(HttpStatus.OK).body(restauranteParaAtualizar);
+        Optional<Restaurante> restauranteParaAtualizar = restauranteService.buscar(id);
 
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Restaurante atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (EntidadeExistenteException e) {
-            System.out.println("Restaurante atualizar: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        if (restauranteParaAtualizar.isPresent()) {
+            BeanUtils.copyProperties(restaurante, restauranteParaAtualizar.get(), "id");
+            restaurante = restauranteService.salvar(restauranteParaAtualizar.get());
+            return ResponseEntity.status(HttpStatus.OK).body(restaurante);
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 
     @DeleteMapping("/{restauranteId}")
     public ResponseEntity<?> excluir(@PathVariable("restauranteId") Long id) {
 
-        try {
-            restauranteService.excluir(id);
+        Optional<Restaurante> restaurante = restauranteService.buscar(id);
+
+        if (restaurante.isPresent()) {
+            restauranteService.excluir(restaurante.get().getId());
             return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEcontradaException e) {
-            System.out.println("Restaurante excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-
-        } catch (EntidadeEmUsoException e) {
-            System.out.println("restaurante excluir: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-
         }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
+            String.format("Registro de código %d não foi encontrado.", id)
+        ).getMessage());
 
     }
 

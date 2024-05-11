@@ -1,17 +1,8 @@
 package com.marvin.easyfoodapi.domain.repository;
 
 import com.marvin.easyfoodapi.domain.model.Cozinha;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface CozinhaRepository {
-
-    List<Cozinha> listar();
-
-    Cozinha buscar(Long id);
-
-    Cozinha salvar(Cozinha cozinha);
-
-    void excluir(Cozinha cozinha);
-
-}
+@Repository
+public interface CozinhaRepository extends JpaRepository<Cozinha, Long> { }
