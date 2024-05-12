@@ -70,6 +70,16 @@ docker image ls
 
 
 
+
+========================================================================================
+
+Spring Data JPA
+https://docs.spring.io/spring-data/jpa/reference/index.html
+
+JPA Query Methods
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+
+
 ========================================================================================
 
 git version
