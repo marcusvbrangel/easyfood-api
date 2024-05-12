@@ -210,13 +210,147 @@ echo $SERVER_PORT
 ========================================================================================
 
 
+v14.21.3
+
+v16.20.2
+
+v18.20.2
+
+v20.13.1
+
+nvm ls
+
+nvm ls-remote
+
+nvm install v14.21.3
+
+nvm use node v18.20.2
 
 ========================================================================================
 
+What is Postman?
+https://www.postman.com/product/what-is-postman/
+
+Get started in Postman
+https://learning.postman.com/docs/getting-started/overview/
+
+API platform
+https://www.postman.com/api-platform/
+
+API repository
+https://www.postman.com/product/api-repository/
+
+Tools
+https://www.postman.com/product/tools/
+
+Governance
+https://www.postman.com/product/governance/
+
+Postman integrations
+https://www.postman.com/product/integrations/
+
+Case studies
+https://www.postman.com/case-studies/whatsapp/
+
+YouTube - Official
+https://www.youtube.com/c/Postman
+
+Postman documentation overview
+https://learning.postman.com/docs/introduction/overview/
+
+Welcome to Postman Academy!
+https://academy.postman.com/
+Self-Study Learning
+https://academy.postman.com/page/self-study-learning
+
+Blog
+https://blog.postman.com/
+
+Speed up your work with Postman templates
+https://www.postman.com/templates/
+
+Guide to API-first
+https://www.postman.com/api-first/
+
+
+Postman Echo API
+https://www.postman.com/postman/workspace/published-postman-templates/documentation/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65?ctx=documentation
+
+Discover APIs, workspaces, collections, and Flows on the Postman API Network
+https://learning.postman.com/docs/getting-started/first-steps/exploring-public-api-network/
+https://www.postman.com/explore
+
+
+API authentication and authorization in Postman
+https://learning.postman.com/docs/sending-requests/authorization/authorization/
+
+Add and manage CA and client certificates in Postman
+https://learning.postman.com/docs/sending-requests/authorization/certificates/
+
+Add API authorization details to requests in Postman
+https://learning.postman.com/docs/sending-requests/authorization/specifying-authorization-details/
+
+Set up authorization for public APIs using Guided Auth
+https://learning.postman.com/docs/sending-requests/authorization/authentication-for-public-apis/
+
+Authorization types supported by Postman
+https://learning.postman.com/docs/sending-requests/authorization/authorization-types/
+
+Authenticate with Digest access authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/digest-auth/
+
+Authenticate with OAuth 1.0 authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/oauth-10/
+
+Authenticate with OAuth 2.0 authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/oauth-20/
+
+Authenticate with Hawk access authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/hawk-authentication/
+
+Authenticate with AWS Signature authentication workflow in Postman
+https://learning.postman.com/docs/sending-requests/authorization/aws-signature/
+
+
+
 
 
 
 ========================================================================================
+
+CURL
+https://curl.se/
+
+curl tutorial
+https://curl.se/docs/tutorial.html
+
+Video presentations
+https://curl.se/docs/videos/
+
+Mastering the curl command line with Daniel Stenberg
+https://www.youtube.com/watch?v=V5vZWHP-RqU
+
+
+
+
+========================================================================================
+
+Create a Linux launcher icon
+
+To start the app from a launcher icon, install the desktop file, located in the bundle, into an applications subdirectory of a path contained in $XDG_DATA_DIRS (for example ~/.local/share/applications/):
+
+install -t ~/.local/share/applications/ /</path/to/file>/Postman/app/resources/Postman.desktop
+
+Enter the following content in the file, replacing </path/to/file> with the location of the file, and save it:
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=</path/to/file>/Postman/app/Postman %U
+Icon=</path/to/file>/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;
 
 
 
