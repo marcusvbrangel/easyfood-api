@@ -62,6 +62,16 @@ https://notafacil.io/
 
 ========================================================================================
 
+
+Spring Boot Maven Plugin Documentation
+https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/
+
+
+
+
+
+========================================================================================
+
 docker pull mysql:8.0.4
 
 docker image rm 8251f0669c6e

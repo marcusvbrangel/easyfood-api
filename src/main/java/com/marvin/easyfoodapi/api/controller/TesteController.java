@@ -47,8 +47,16 @@ public class TesteController {
         return restauranteRepository.findByNomeContainingIgnoreCaseAndCozinhaId(nome, cozinhaId);
     }
 
+    @GetMapping("/restauranges/consultar-por-nome-cozinha")
+    public List<Restaurante> consultarPorNome(String nome, Long cozinhaId) {
+        return restauranteRepository.consultarRestaurantePorNome(nome, cozinhaId);
+    }
 
+    @GetMapping("/restauranges/find-xyz")
+    public List<Restaurante> restaurantesPorNomeFrete(String nome, BigDecimal taxaFreteInicial,
+                                                      BigDecimal taxaFreteFinal) {
 
-
+        return restauranteRepository.findXyz(nome, taxaFreteInicial, taxaFreteFinal);
+    }
 
 }
