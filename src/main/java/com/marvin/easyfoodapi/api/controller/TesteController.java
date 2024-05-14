@@ -56,7 +56,7 @@ public class TesteController {
     public List<Restaurante> restaurantesPorNomeFrete(String nome, BigDecimal taxaFreteInicial,
                                                       BigDecimal taxaFreteFinal) {
 
-        return restauranteRepository.findXyz(nome, taxaFreteInicial, taxaFreteFinal);
+        return restauranteRepository.findVersaoDois(nome, taxaFreteInicial, taxaFreteFinal);
     }
 
 }

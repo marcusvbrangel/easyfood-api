@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface RestauranteRepositoryQueries {
 
-    List<Restaurante> findXyz(String nome, BigDecimal
+    List<Restaurante> findVersaoUm(String nome, BigDecimal
+        taxaFreteInicial, BigDecimal taxaFreteFinal);
+
+    List<Restaurante> findVersaoDois(String nome, BigDecimal
         taxaFreteInicial, BigDecimal taxaFreteFinal);
 
 }
