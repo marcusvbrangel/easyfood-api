@@ -13,6 +13,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import static com.marvin.easyfoodapi.infrastructure.repository.specification.RestauranteSpecifications.comFreteGratis;
+import static com.marvin.easyfoodapi.infrastructure.repository.specification.RestauranteSpecifications.comNomeSemelhante;
+
+// ref:
 @RestController
 @RequestMapping("/teste")
 public class TesteController {
@@ -57,6 +61,13 @@ public class TesteController {
                                                       BigDecimal taxaFreteFinal) {
 
         return restauranteRepository.findVersaoDois(nome, taxaFreteInicial, taxaFreteFinal);
+    }
+
+    @GetMapping("/restauranges/com-frete-gratis")
+    public List<Restaurante> restaurantesComFreteGratis(String nome) {
+
+        return restauranteRepository.findAll(comFreteGratis().and(comNomeSemelhante(nome)));
+
     }
 
 }
