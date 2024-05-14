@@ -1,7 +1,10 @@
 package com.marvin.easyfoodapi.infrastructure.repository;
 
 import com.marvin.easyfoodapi.domain.model.Restaurante;
+import com.marvin.easyfoodapi.domain.repository.RestauranteRepository;
 import com.marvin.easyfoodapi.domain.repository.RestauranteRepositoryQueries;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -17,12 +20,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.marvin.easyfoodapi.infrastructure.repository.specification.RestauranteSpecifications.comFreteGratis;
+import static com.marvin.easyfoodapi.infrastructure.repository.specification.RestauranteSpecifications.comNomeSemelhante;
+
 // ref:
 @Repository
 public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 
     @PersistenceContext
     private final EntityManager entityManager;
+
+    @Autowired
+    @Lazy
+    private RestauranteRepository restauranteRepository;
 
     public RestauranteRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -97,9 +107,9 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 
     }
 
-
-
-
-
+    @Override
+    public List<Restaurante> findComFreteGratis(String nome) {
+        return restauranteRepository.findAll(comFreteGratis().and(comNomeSemelhante(nome)));
+    }
 
 }
