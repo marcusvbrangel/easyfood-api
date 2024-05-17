@@ -338,6 +338,25 @@ https://learning.postman.com/docs/sending-requests/authorization/aws-signature/
 
 ========================================================================================
 
+
+Directories used by the IDE to store settings, caches, plugins and logs
+https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs
+
+
+    Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2
+    Plugins (idea.plugins.path): ~/.local/share/JetBrains/IntelliJIdea2022.2
+    System (idea.system.path): ~/.cache/JetBrains/IntelliJIdea2022.2
+    Logs (idea.log.path): ~/.cache/JetBrains/IntelliJIdea2022.2/log
+
+
+
+
+
+========================================================================================
+
+
+
+
 CURL
 https://curl.se/
 
