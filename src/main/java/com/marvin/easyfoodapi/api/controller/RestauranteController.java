@@ -24,7 +24,12 @@ public class RestauranteController {
 
     @GetMapping
     public List<Restaurante> listar() {
-        return restauranteService.listar();
+        try {
+            return restauranteService.listar();
+        } catch (Exception e) {
+            var erro = e.getMessage();
+            return null;
+        }
     }
 
     @RequestMapping("/{restauranteId}")
@@ -57,7 +62,7 @@ public class RestauranteController {
 
         if (restauranteParaAtualizar.isPresent()) {
             BeanUtils.copyProperties(restaurante, restauranteParaAtualizar.get(),
-                "id", "formasPagamento", "endereco", "dataCadastro");
+                "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
             restaurante = restauranteService.salvar(restauranteParaAtualizar.get());
             return ResponseEntity.status(HttpStatus.OK).body(restaurante);
         }

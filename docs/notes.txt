@@ -419,3 +419,67 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 
 
+insert into produto (nome, restaurante_id) values ('Porco com molho agridoce', 1);
+insert into produto (nome, restaurante_id) values ('Camarão tailandês', 1);
+insert into produto (nome, restaurante_id) values ('Salada picante com carne grelhada', 2);
+insert into produto (nome, restaurante_id) values ('Garlic Naan', 3);
+insert into produto (nome, restaurante_id) values ('Murg Curry', 3);
+insert into produto (nome, restaurante_id) values ('Bife Ancho', 4);
+insert into produto (nome, restaurante_id) values ('T-Bone', 4);
+insert into produto (nome, restaurante_id) values ('Sanduíche X-Tudo', 4);
+insert into produto (nome, restaurante_id) values ('Espetinho de Cupim', 1);
+
+
+
+
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Porco com molho agridoce', 'Deliciosa carne suína ao molho especial', 78.90, true, 1);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Camarão tailandês', '16 camarões grandes ao molho picante', 110, true, 1);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Salada picante com carne grelhada', 'Salada de folhas com cortes finos de carne bovina grelhada e nosso molho especial de pimenta vermelha', 87.20, true, 2);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Garlic Naan', 'Pão tradicional indiano com cobertura de alho', 21, true, 3);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Murg Curry', 'Cubos de frango preparados com molho curry e especiarias', 43, true, 3);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bife Ancho', 'Corte macio e suculento, com dois dedos de espessura, retirado da parte dianteira do contrafilé', 79, true, 4);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('T-Bone', 'Corte muito saboroso, com um osso em formato de T, sendo de um lado o contrafilé e do outro o filé mignon', 89, true, 4);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Sanduíche X-Tudo', 'Sandubão com muito queijo, hamburger bovino, bacon, ovo, salada e maionese', 19, true, 4);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Espetinho de Cupim', 'Acompanha farinha, mandioca e vinagrete', 8, true, 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Servlet.service() for servlet [dispatcherServlet] in
+context with path [] threw exception [Request processing failed;
+nested exception is org.springframework.http.converter.HttpMessageNotWritableException:
+
+Could not write JSON: Infinite recursion (StackOverflowError);
+
+nested exception is com.fasterxml.jackson.databind.JsonMappingException:
+Infinite recursion (StackOverflowError) (through reference chain:
+com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]
+->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]
+->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]
+->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodap
+
+
+
+
+
+
+
+
+

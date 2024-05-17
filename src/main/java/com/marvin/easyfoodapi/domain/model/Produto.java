@@ -23,13 +23,13 @@ public class Produto {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private BigDecimal preco;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Boolean ativo;
 
     @ManyToOne
