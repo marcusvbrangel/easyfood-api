@@ -29,10 +29,10 @@ insert into cidade(nome, estado_id) values ('Colatina', 4);
 insert into cidade(nome, estado_id) values ('Campinas', 2);
 insert into cidade(nome, estado_id) values ('Santos', 2);
 
-insert into restaurante(nome, taxa_frete, cozinha_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id) values ('Casa Velha', 10.99, 3, '35800960', 'Av. Brasil', '7849', 'Altos', 'Madureira', '2');
-insert into restaurante(nome, taxa_frete, cozinha_id) values ('Costa Marinha', 9.05, 3);
-insert into restaurante(nome, taxa_frete, cozinha_id) values ('Boteco do Zé', 0, 3);
-insert into restaurante(nome, taxa_frete, cozinha_id) values ('Cêquissabe', 0, 2);
+insert into restaurante(nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id) values ('Casa Velha', 10.99, 3, current_timestamp, current_timestamp, '35800960', 'Av. Brasil', '7849', 'Altos', 'Madureira', '2');
+insert into restaurante(nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Costa Marinha', 9.05, 3, current_timestamp, current_timestamp);
+insert into restaurante(nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Boteco do Zé', 0, 3, current_timestamp, current_timestamp);
+insert into restaurante(nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Cêquissabe', 0, 2, current_timestamp, current_timestamp);
 
 insert into restaurante_forma_pagamento(restaurante_id, forma_pagamento_id) values (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3), (4, 1), (4, 2), (4, 3);
 
