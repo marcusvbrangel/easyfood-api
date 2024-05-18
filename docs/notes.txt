@@ -143,6 +143,38 @@ and the repository exists.
 
 ========================================================================================
 
+(EASY) How to uninstall docker completely on Ubuntu
+https://toptechtips.github.io/2023-04-21-completely-uninstall-docker-ubuntu/
+
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+
+sudo apt purge docker.io
+sudo apt purge     docker-compose
+sudo apt purge     docker-compose-v2
+sudo apt purge     docker-doc
+sudo apt purge     podman-docker
+
+sudo apt autoremove
+
+sudo find / -name '*docker*'
+
+
+
+Install Docker Engine on Ubuntu * * * * *
+https://docs.docker.com/engine/install/ubuntu/
+Linux post-installation steps for Docker Engine
+https://docs.docker.com/engine/install/linux-postinstall/
+
+Install Docker Desktop on Linux
+https://docs.docker.com/desktop/install/linux-install/
+
+Install Docker Desktop on Ubuntu
+https://docs.docker.com/desktop/install/ubuntu/
+
+
+========================================================================================
+
 
 Fixing the Github Permission denied issue | Github SSH Key setup
 https://www.youtube.com/watch?v=TviP5rCZiy0
@@ -333,7 +365,26 @@ https://learning.postman.com/docs/sending-requests/authorization/aws-signature/
 
 
 
+========================================================================================
 
+
+Get started with GitHub Actions
+https://github.com/marcusvbrangel/easyfood-api/actions/new
+
+Aprenda o GitHub Actions
+https://docs.github.com/pt/actions/learn-github-actions
+
+Gerenciar fluxos de trabalho
+https://docs.github.com/pt/actions/managing-workflow-runs
+
+Automatizando criações e testes
+https://docs.github.com/pt/actions/automating-builds-and-tests
+
+Criar e testar o Java com o Maven
+https://docs.github.com/pt/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+Criar e testar o Java com o Gradle
+https://docs.github.com/pt/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
 
 ========================================================================================
@@ -354,7 +405,84 @@ https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-u
 
 ========================================================================================
 
+KUBERNETES
 
+https://kubernetes.io/pt-br/
+
+Instalação
+https://kubernetes.io/pt-br/docs/setup/
+
+minikube start
+https://minikube.sigs.k8s.io/docs/start/
+
+
+$ minikube start
+😄  minikube v1.33.1 on Ubuntu 24.04
+✨  Automatically selected the docker driver. Other choices: ssh, none
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.44 ...
+💾  Downloading Kubernetes v1.30.0 preload ...
+    > preloaded-images-k8s-v18-v1...:  342.90 MiB / 342.90 MiB  100.00% 2.45 Mi
+    > gcr.io/k8s-minikube/kicbase...:  481.58 MiB / 481.58 MiB  100.00% 2.51 Mi
+🔥  Creating docker container (CPUs=2, Memory=3900MB) ...
+🐳  Preparing Kubernetes v1.30.0 on Docker 26.1.1 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+
+
+
+========================================================================================
+
+
+MINIKUBE
+
+
+minikube start
+https://minikube.sigs.k8s.io/docs/start/
+
+Commands - minikube command reference
+https://minikube.sigs.k8s.io/docs/commands/
+
+Handbook - How to perform common tasks with minikube
+https://minikube.sigs.k8s.io/docs/handbook/
+
+Tutorials - Contributed end-to-end tutorials using minikube
+https://minikube.sigs.k8s.io/docs/tutorials/
+
+Kubernetes 101 - Tutorial showing how to deploy, explore, expose, scale, and update your applications
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/
+
+Module 2 - Deploy an app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module2/
+
+Module 3 - Explore your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module3/
+
+Module 4 - Expose your app publicly
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module4/
+
+Module 5 - Scale up your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module5/
+
+Module 6 - Update your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module6/
+
+
+
+
+
+
+
+========================================================================================
 
 
 CURL
