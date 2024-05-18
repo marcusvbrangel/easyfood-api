@@ -1,6 +1,7 @@
 package com.marvin.easyfoodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,9 @@ public class Restaurante {
     @Column(nullable = false)
     private BigDecimal taxaFrete;
 
-    @ManyToOne
+//    @JsonIgnore
+//    @JsonIgnoreProperties("hibernateLazyInitializer")
+    @ManyToOne  //(fetch = FetchType.LAZY)
     @JoinColumn(name = "cozinha_id", nullable = false)
     private Cozinha cozinha;
 
@@ -40,17 +43,18 @@ public class Restaurante {
     @Embedded
     private Endereco endereco;
 
-//    @JsonIgnore
+    @JsonIgnore
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime dataCadastro;
 
-//    @JsonIgnore
+    @JsonIgnore
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime dataAtualizacao;
 
-    @JsonIgnore
+//    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany
     @JoinTable(name = "restaurante_forma_pagamento",
         joinColumns = @JoinColumn(name = "restaurante_id"),
