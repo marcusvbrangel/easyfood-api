@@ -262,6 +262,22 @@ echo $SERVER_PORT
 ========================================================================================
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================================================================
+
+
 v14.21.3
 
 v16.20.2
@@ -506,6 +522,20 @@ https://curl.se/docs/videos/
 Mastering the curl command line with Daniel Stenberg
 https://www.youtube.com/watch?v=V5vZWHP-RqU
 
+
+========================================================================================
+
+
+extensões/dependências JIB e Minikube
+
+pom.xml aliadas a estas configurações do arquivo properties,
+apoś a execução mvn clean package além de ser gerada a imagem,
+também são gerados de forma automática os arquivos necessários para o deploy no Minikube ou Kubernetes.
+
+As configurações que utilizamos foram:
+
+quarkus.container-image.group=acme
+quarkus.container-image.build=true
 
 
 
