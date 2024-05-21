@@ -4,9 +4,9 @@ insert into cozinha (nome) values ('Mexicana');
 insert into cozinha (nome) values ('Brasileira');
 
 
-insert into forma_pagamento(descricao) values ('Dinheiro');
-insert into forma_pagamento(descricao) values ('Cartão de Crédito');
-insert into forma_pagamento(descricao) values ('Pix');
+insert into forma_pagamento(nome) values ('Dinheiro');
+insert into forma_pagamento(nome) values ('Cartão de Crédito');
+insert into forma_pagamento(nome) values ('Pix');
 
 
 insert into permissao(nome, descricao) values ('Incluir', 'Incluir registro');
