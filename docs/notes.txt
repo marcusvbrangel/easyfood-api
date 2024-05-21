@@ -62,6 +62,21 @@ Flyway Documentation
 https://documentation.red-gate.com/flyway
 
 
+eksctl - The official CLI for Amazon EKS
+https://eksctl.io/#
+
+
+KUBERNETES
+https://kubernetes.io/
+
+
+EKS - Amazon Elastic Kubernetes Service
+https://aws.amazon.com/pt/eks/?nc2=h_ql_prod_ct_eks
+
+
+kind
+https://kind.sigs.k8s.io/
+
 
 
 ========================================================================================
@@ -651,6 +666,7 @@ com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.colle
 
 
 
+kubernetes-hands-on-deploy-microservices-to-the-aws-cloud
 
 
 
