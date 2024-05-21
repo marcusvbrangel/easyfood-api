@@ -109,7 +109,6 @@ alter table restaurante alter column nome set not null;
 alter table restaurante add constraint uk_restaurante_nome unique (nome);
 alter table restaurante alter column taxa_frete set not null;
 alter table restaurante alter column data_cadastro set not null;
-alter table restaurante alter column endereco_cidade_id set not null;
 alter table restaurante alter column cozinha_id set not null;
 
 create table grupo_permissao (
