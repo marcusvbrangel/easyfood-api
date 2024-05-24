@@ -89,3 +89,38 @@ create table usuario_grupo (
 	grupo_id int8,
 	primary key (usuario_id, grupo_id)
 );
+
+create table item_pedido (
+    id  bigserial not null,
+    observacao varchar(255),
+    preco_total numeric(19, 2) not null,
+    preco_unitario numeric(19, 2) not null,
+    quantidade int4,
+    pedido_id int8 not null,
+    produto_id int8 not null,
+    primary key (id)
+)
+
+create table pedido (
+    id  bigserial not null,
+    data_cancelamento timestamp,
+    data_confirmacao timestamp,
+    data_criacao timestamp not null,
+    data_entrega timestamp,
+    endereco_bairro varchar(60),
+    endereco_cep varchar(2),
+    endereco_complemento varchar(60),
+    endereco_logradouro varchar(60),
+    endereco_numero varchar(10),
+    status int4 not null,
+    sub_total numeric(19, 2) not null,
+    taxa_frete numeric(19, 2) not null,
+    valor_total numeric(19, 2) not null,
+    usuario_cliente_id int8 not null,
+    endereco_cidade_id int8,
+    forma_pagamento_id int8 not null,
+    restaurante_id int8 not null,
+    primary key (id)
+)
+
+
