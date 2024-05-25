@@ -1,16 +1,15 @@
 package com.marvin.easyfoodapi.api.controller;
 
-import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
+import com.marvin.easyfoodapi.domain.exception.NegocioException;
+import com.marvin.easyfoodapi.domain.exception.RestauranteNaoEncontradoException;
 import com.marvin.easyfoodapi.domain.model.Restaurante;
 import com.marvin.easyfoodapi.domain.service.RestauranteService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/restaurantes", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,60 +32,41 @@ public class RestauranteController {
     }
 
     @RequestMapping("/{restauranteId}")
-    public ResponseEntity<?> buscar(@PathVariable("restauranteId") Long id) {
-
-        Optional<Restaurante> restaurante = restauranteService.buscar(id);
-
-        if (restaurante.isPresent()) {
-            return new ResponseEntity<>(restaurante.get(), HttpStatus.OK);
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
-            String.format("Registro de código %d não foi encontrado.", id)
-        ).getMessage());
-
+    @ResponseStatus(HttpStatus.OK)
+    public Restaurante buscar(@PathVariable("restauranteId") Long id) {
+        return restauranteService.buscarOuFalhar(id);
     }
 
     @PostMapping
-    public ResponseEntity<?> adicionar(@RequestBody Restaurante restaurante) {
-        restaurante = restauranteService.salvar(restaurante);
-        return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
+    @ResponseStatus(HttpStatus.OK)
+    public Restaurante adicionar(@RequestBody Restaurante restaurante) {
+        try {
+            return restauranteService.salvar(restaurante);
+        } catch (RestauranteNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage(), e);
+        }
 
     }
 
     @PutMapping("/{restauranteId}")
-    public ResponseEntity<?> atualizar(@PathVariable("restauranteId") Long id,
+    @ResponseStatus(HttpStatus.OK)
+    public Restaurante atualizar(@PathVariable("restauranteId") Long id,
                                        @RequestBody Restaurante restaurante) {
-
-        Optional<Restaurante> restauranteParaAtualizar = restauranteService.buscar(id);
-
-        if (restauranteParaAtualizar.isPresent()) {
-            BeanUtils.copyProperties(restaurante, restauranteParaAtualizar.get(),
-                "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
-            restaurante = restauranteService.salvar(restauranteParaAtualizar.get());
-            return ResponseEntity.status(HttpStatus.OK).body(restaurante);
+        Restaurante restauranteParaAtualizar = restauranteService.buscarOuFalhar(id);
+        BeanUtils.copyProperties(restaurante, restauranteParaAtualizar,
+            "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
+        try {
+            return restauranteService.salvar(restauranteParaAtualizar);
+        } catch (RestauranteNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage(), e);
         }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
-            String.format("Registro de código %d não foi encontrado.", id)
-        ).getMessage());
 
     }
 
     @DeleteMapping("/{restauranteId}")
-    public ResponseEntity<?> excluir(@PathVariable("restauranteId") Long id) {
-
-        Optional<Restaurante> restaurante = restauranteService.buscar(id);
-
-        if (restaurante.isPresent()) {
-            restauranteService.excluir(restaurante.get().getId());
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntidadeNaoEcontradaException(
-            String.format("Registro de código %d não foi encontrado.", id)
-        ).getMessage());
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable("restauranteId") Long id) {
+        restauranteService.excluir(id);
     }
 
 }
