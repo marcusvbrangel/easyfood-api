@@ -1,17 +1,36 @@
 package com.marvin.easyfoodapi.domain.repository;
 
 import com.marvin.easyfoodapi.domain.model.Restaurante;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
-public interface RestauranteRepository {
+@Repository
+public interface RestauranteRepository extends CustomJpaRepository<Restaurante, Long>,
+    RestauranteRepositoryQueries, JpaSpecificationExecutor<Restaurante> {
 
-    List<Restaurante> listar();
+    @Query("from Restaurante r join fetch r.cozinha left join fetch r.formasPagamento")
+    List<Restaurante> findAll();
 
-    Restaurante buscar(Long id);
+    List<Restaurante> queryByTaxaFreteBetween(BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
 
-    Restaurante salvar(Restaurante restaurante);
+    @Query("from Restaurante where lower(nome) like %:nome% and cozinha.id = :id")
+    List<Restaurante> consultarPorNome(String nome, @Param("id") Long cozinha);
 
-    void excluir(Restaurante restaurante);
+    // Note: lendo query de um arquivo xml da pasta resources/META-INF/orm.xml ...
+    List<Restaurante> consultarRestaurantePorNome(String nome, @Param("id") Long cozinha);
+
+    List<Restaurante> findByNomeContainingIgnoreCaseAndCozinhaId(String nome, Long cozinha);
+
+    Optional<Restaurante> findFirstByNomeContaining(String nome);
+
+    List<Restaurante> findTop2ByNomeContainingOrderByNomeAsc(String nome);
+
+    int countByCozinhaId(Long cozinha);
 
 }

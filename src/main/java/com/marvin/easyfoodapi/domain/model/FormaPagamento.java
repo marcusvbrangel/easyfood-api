@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
 public class FormaPagamento {
@@ -20,6 +20,6 @@ public class FormaPagamento {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String descricao;
+    private String nome;
 
 }

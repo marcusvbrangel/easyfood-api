@@ -1,83 +1,54 @@
 package com.marvin.easyfoodapi.domain.service;
 
 import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
-import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
+import com.marvin.easyfoodapi.domain.exception.RestauranteNaoEncontradoException;
+import com.marvin.easyfoodapi.domain.model.Cozinha;
 import com.marvin.easyfoodapi.domain.model.Restaurante;
 import com.marvin.easyfoodapi.domain.repository.RestauranteRepository;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestauranteService {
 
-    private final RestauranteRepository restauranteRepository;
+    public static final String MSG_REGISTRO_EM_USO = "Restaurante de código %d não pode ser excluído, pois está em uso.";
 
-    public RestauranteService(RestauranteRepository restauranteRepository) {
-        this.restauranteRepository = restauranteRepository;
+    private final RestauranteRepository restauranteRepository;
+    private final CozinhaService cozinhaService;
+
+    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService) {
+        this.restauranteRepository  = restauranteRepository;
+        this.cozinhaService = cozinhaService;
     }
 
     public List<Restaurante> listar() {
-
-        return restauranteRepository.listar();
+        return restauranteRepository.findAll();
     }
 
     public Restaurante salvar(Restaurante restaurante) {
-
-        // todo: capturar todos os possiveis erros abaixo... incluir/alterar...
-        try {
-            restaurante = restauranteRepository.salvar(restaurante);
-            System.out.println("service salvar 00");
-
-        } catch (DataIntegrityViolationException e) {
-            System.out.println("service salvar 01: " + e.getMessage());
-            throw new EntidadeExistenteException(
-                String.format("Registro de nome %s já existente", restaurante.getNome()));
-        } catch (ConstraintViolationException e) {
-            System.out.println("service salvar 02: " + e.getMessage());
-            throw new EntidadeExistenteException(
-                String.format("Registro de nome %s já existente", restaurante.getNome()));
-        }
-
-        return restaurante;
-
-    }
-
-    public Restaurante buscar(Long id) {
-
-        Restaurante restaurante = restauranteRepository.buscar(id);
-
-        if (restaurante == null) {
-//            throw new EmptyResultDataAccessException(1);
-            throw new EntidadeNaoEcontradaException(
-                String.format("Registro de código %d não pode ser encontrado.", id));
-        }
-
-        return restaurante;
-
+        Long cozinhaId = restaurante.getCozinha().getId();
+        Cozinha cozinha = cozinhaService.buscarOuFalhar(cozinhaId);
+        return restauranteRepository.save(restaurante);
     }
 
     public void excluir(Long id) {
-
         try {
-
-            Restaurante restaurante = this.buscar(id);
-            restauranteRepository.excluir(restaurante);
-
-        } catch (EntidadeNaoEcontradaException e) {
-
-            throw new EntidadeNaoEcontradaException(
-                String.format("Registro de código %d não pode ser encontrado.", id));
-
+            restauranteRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new RestauranteNaoEncontradoException(id);
         } catch (DataIntegrityViolationException e) {
-
-            throw new EntidadeEmUsoException(
-                String.format("Registro de código %d não pode ser excluído, pois está em uso.", id));
+            throw new EntidadeEmUsoException(String.format(MSG_REGISTRO_EM_USO, id));
         }
 
+    }
+
+    public Restaurante buscarOuFalhar(Long id) {
+        return restauranteRepository.findById(id).orElseThrow(() -> new RestauranteNaoEncontradoException(id));
     }
 
 }

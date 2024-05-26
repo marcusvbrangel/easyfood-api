@@ -10,9 +10,9 @@ Ctrl + D                                Duplicate current line or selected block
 Ctrl + Y                                Delete line at caret
 Shift + Enter                           Start new line
 
-Ctrl + Shift + seta para cima/baixo     Auto-indent line(s)
+Ctrl + Shift + seta para cima/baixo     Mover linha/bloco
 
-
+Alt + Enter                             Importar
 
 ========================================================================================
 
@@ -50,6 +50,41 @@ https://www.localstack.cloud/
 NGROK
 https://ngrok.com/
 
+BAELDUNG
+https://www.baeldung.com/
+
+
+NOTA FACIL
+O jeito mais fácil de emitir suas notas fiscais
+https://notafacil.io/
+
+Flyway Documentation
+https://documentation.red-gate.com/flyway
+
+
+eksctl - The official CLI for Amazon EKS
+https://eksctl.io/#
+
+
+KUBERNETES
+https://kubernetes.io/
+
+
+EKS - Amazon Elastic Kubernetes Service
+https://aws.amazon.com/pt/eks/?nc2=h_ql_prod_ct_eks
+
+
+kind
+https://kind.sigs.k8s.io/
+
+
+
+========================================================================================
+
+
+Spring Boot Maven Plugin Documentation
+https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/
+
 
 
 
@@ -62,6 +97,16 @@ docker image rm 8251f0669c6e
 
 docker image ls
 
+
+
+
+========================================================================================
+
+Spring Data JPA
+https://docs.spring.io/spring-data/jpa/reference/index.html
+
+JPA Query Methods
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 
 
 ========================================================================================
@@ -113,6 +158,38 @@ Please make sure you have the correct access rights
 and the repository exists.
 
 
+
+
+========================================================================================
+
+(EASY) How to uninstall docker completely on Ubuntu
+https://toptechtips.github.io/2023-04-21-completely-uninstall-docker-ubuntu/
+
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+
+sudo apt purge docker.io
+sudo apt purge     docker-compose
+sudo apt purge     docker-compose-v2
+sudo apt purge     docker-doc
+sudo apt purge     podman-docker
+
+sudo apt autoremove
+
+sudo find / -name '*docker*'
+
+
+
+Install Docker Engine on Ubuntu * * * * *
+https://docs.docker.com/engine/install/ubuntu/
+Linux post-installation steps for Docker Engine
+https://docs.docker.com/engine/install/linux-postinstall/
+
+Install Docker Desktop on Linux
+https://docs.docker.com/desktop/install/linux-install/
+
+Install Docker Desktop on Ubuntu
+https://docs.docker.com/desktop/install/ubuntu/
 
 
 ========================================================================================
@@ -193,18 +270,312 @@ echo $SERVER_PORT
 ========================================================================================
 
 
+{
+    "timestamp": "2024-05-11T20:01:05.661+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "message": "No message available",
+    "path": "/cozinhas/2"
+}
+
+========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ========================================================================================
 
 
+v14.21.3
+
+v16.20.2
+
+v18.20.2
+
+v20.13.1
+
+nvm ls
+
+nvm ls-remote
+
+nvm install v14.21.3
+
+nvm use node v18.20.2
+
+========================================================================================
+
+What is Postman?
+https://www.postman.com/product/what-is-postman/
+
+Get started in Postman
+https://learning.postman.com/docs/getting-started/overview/
+
+API platform
+https://www.postman.com/api-platform/
+
+API repository
+https://www.postman.com/product/api-repository/
+
+Tools
+https://www.postman.com/product/tools/
+
+Governance
+https://www.postman.com/product/governance/
+
+Postman integrations
+https://www.postman.com/product/integrations/
+
+Case studies
+https://www.postman.com/case-studies/whatsapp/
+
+YouTube - Official
+https://www.youtube.com/c/Postman
+
+Postman documentation overview
+https://learning.postman.com/docs/introduction/overview/
+
+Welcome to Postman Academy!
+https://academy.postman.com/
+Self-Study Learning
+https://academy.postman.com/page/self-study-learning
+
+Blog
+https://blog.postman.com/
+
+Speed up your work with Postman templates
+https://www.postman.com/templates/
+
+Guide to API-first
+https://www.postman.com/api-first/
+
+
+Postman Echo API
+https://www.postman.com/postman/workspace/published-postman-templates/documentation/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65?ctx=documentation
+
+Discover APIs, workspaces, collections, and Flows on the Postman API Network
+https://learning.postman.com/docs/getting-started/first-steps/exploring-public-api-network/
+https://www.postman.com/explore
+
+
+API authentication and authorization in Postman
+https://learning.postman.com/docs/sending-requests/authorization/authorization/
+
+Add and manage CA and client certificates in Postman
+https://learning.postman.com/docs/sending-requests/authorization/certificates/
+
+Add API authorization details to requests in Postman
+https://learning.postman.com/docs/sending-requests/authorization/specifying-authorization-details/
+
+Set up authorization for public APIs using Guided Auth
+https://learning.postman.com/docs/sending-requests/authorization/authentication-for-public-apis/
+
+Authorization types supported by Postman
+https://learning.postman.com/docs/sending-requests/authorization/authorization-types/
+
+Authenticate with Digest access authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/digest-auth/
+
+Authenticate with OAuth 1.0 authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/oauth-10/
+
+Authenticate with OAuth 2.0 authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/oauth-20/
+
+Authenticate with Hawk access authentication in Postman
+https://learning.postman.com/docs/sending-requests/authorization/hawk-authentication/
+
+Authenticate with AWS Signature authentication workflow in Postman
+https://learning.postman.com/docs/sending-requests/authorization/aws-signature/
+
+
 
 ========================================================================================
 
 
+Get started with GitHub Actions
+https://github.com/marcusvbrangel/easyfood-api/actions/new
+
+Aprenda o GitHub Actions
+https://docs.github.com/pt/actions/learn-github-actions
+
+Gerenciar fluxos de trabalho
+https://docs.github.com/pt/actions/managing-workflow-runs
+
+Automatizando criações e testes
+https://docs.github.com/pt/actions/automating-builds-and-tests
+
+Criar e testar o Java com o Maven
+https://docs.github.com/pt/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+Criar e testar o Java com o Gradle
+https://docs.github.com/pt/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
 
 ========================================================================================
+
+
+Directories used by the IDE to store settings, caches, plugins and logs
+https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs
+
+
+    Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2
+    Plugins (idea.plugins.path): ~/.local/share/JetBrains/IntelliJIdea2022.2
+    System (idea.system.path): ~/.cache/JetBrains/IntelliJIdea2022.2
+    Logs (idea.log.path): ~/.cache/JetBrains/IntelliJIdea2022.2/log
+
+
+
+
+
+========================================================================================
+
+KUBERNETES
+
+https://kubernetes.io/pt-br/
+
+Instalação
+https://kubernetes.io/pt-br/docs/setup/
+
+minikube start
+https://minikube.sigs.k8s.io/docs/start/
+
+
+$ minikube start
+😄  minikube v1.33.1 on Ubuntu 24.04
+✨  Automatically selected the docker driver. Other choices: ssh, none
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.44 ...
+💾  Downloading Kubernetes v1.30.0 preload ...
+    > preloaded-images-k8s-v18-v1...:  342.90 MiB / 342.90 MiB  100.00% 2.45 Mi
+    > gcr.io/k8s-minikube/kicbase...:  481.58 MiB / 481.58 MiB  100.00% 2.51 Mi
+🔥  Creating docker container (CPUs=2, Memory=3900MB) ...
+🐳  Preparing Kubernetes v1.30.0 on Docker 26.1.1 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+
+
+
+========================================================================================
+
+
+MINIKUBE
+
+
+minikube start
+https://minikube.sigs.k8s.io/docs/start/
+
+Commands - minikube command reference
+https://minikube.sigs.k8s.io/docs/commands/
+
+Handbook - How to perform common tasks with minikube
+https://minikube.sigs.k8s.io/docs/handbook/
+
+Tutorials - Contributed end-to-end tutorials using minikube
+https://minikube.sigs.k8s.io/docs/tutorials/
+
+Kubernetes 101 - Tutorial showing how to deploy, explore, expose, scale, and update your applications
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/
+
+Module 2 - Deploy an app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module2/
+
+Module 3 - Explore your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module3/
+
+Module 4 - Expose your app publicly
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module4/
+
+Module 5 - Scale up your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module5/
+
+Module 6 - Update your app
+https://minikube.sigs.k8s.io/docs/tutorials/kubernetes_101/module6/
+
+
+
+========================================================================================
+
+
+from Restaurante r join fetch r.cozinha left join fetch r.formasPagamento")
+List<Restaurante> findAll();
+
+
+select restaurant0_.id as id1_8_0_, cozinha1_.id as id1_1_1_, formapagam3_.id as id1_3_2_, restaurant0_.cozinha_id as cozinha11_8_0_, restaurant0_.data_atualizacao as data_atu2_8_0_, restaurant0_.data_cadastro as data_cad3_8_0_, restaurant0_.endereco_bairro as endereco4_8_0_, restaurant0_.endereco_cep as endereco5_8_0_, restaurant0_.endereco_cidade_id as enderec12_8_0_, restaurant0_.endereco_complemento as endereco6_8_0_, restaurant0_.endereco_logradouro as endereco7_8_0_, restaurant0_.endereco_numero as endereco8_8_0_, restaurant0_.nome as nome9_8_0_, restaurant0_.taxa_frete as taxa_fr10_8_0_, cozinha1_.nome as nome2_1_1_, formapagam3_.descricao as descrica2_3_2_, formaspaga2_.restaurante_id as restaura1_9_0__, formaspaga2_.forma_pagamento_id as forma_pa2_9_0__
+from restaurante restaurant0_ inner join cozinha cozinha1_ on restaurant0_.cozinha_id=cozinha1_.id
+left outer join restaurante_forma_pagamento formaspaga2_ on restaurant0_.id=formaspaga2_.restaurante_id
+left outer join forma_pagamento formapagam3_ on formaspaga2_.forma_pagamento_id=formapagam3_.id
+
+
+========================================================================================
+
+
+CURL
+https://curl.se/
+
+curl tutorial
+https://curl.se/docs/tutorial.html
+
+Video presentations
+https://curl.se/docs/videos/
+
+Mastering the curl command line with Daniel Stenberg
+https://www.youtube.com/watch?v=V5vZWHP-RqU
+
+
+========================================================================================
+
+
+extensões/dependências JIB e Minikube
+
+pom.xml aliadas a estas configurações do arquivo properties,
+apoś a execução mvn clean package além de ser gerada a imagem,
+também são gerados de forma automática os arquivos necessários para o deploy no Minikube ou Kubernetes.
+
+As configurações que utilizamos foram:
+
+quarkus.container-image.group=acme
+quarkus.container-image.build=true
+
+
+
+========================================================================================
+
+Create a Linux launcher icon
+
+To start the app from a launcher icon, install the desktop file, located in the bundle, into an applications subdirectory of a path contained in $XDG_DATA_DIRS (for example ~/.local/share/applications/):
+
+install -t ~/.local/share/applications/ /</path/to/file>/Postman/app/resources/Postman.desktop
+
+Enter the following content in the file, replacing </path/to/file> with the location of the file, and save it:
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=</path/to/file>/Postman/app/Postman %U
+Icon=</path/to/file>/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;
 
 
 
@@ -231,6 +602,71 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 
 
+
+
+
+insert into produto (nome, restaurante_id) values ('Porco com molho agridoce', 1);
+insert into produto (nome, restaurante_id) values ('Camarão tailandês', 1);
+insert into produto (nome, restaurante_id) values ('Salada picante com carne grelhada', 2);
+insert into produto (nome, restaurante_id) values ('Garlic Naan', 3);
+insert into produto (nome, restaurante_id) values ('Murg Curry', 3);
+insert into produto (nome, restaurante_id) values ('Bife Ancho', 4);
+insert into produto (nome, restaurante_id) values ('T-Bone', 4);
+insert into produto (nome, restaurante_id) values ('Sanduíche X-Tudo', 4);
+insert into produto (nome, restaurante_id) values ('Espetinho de Cupim', 1);
+
+
+
+
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Porco com molho agridoce', 'Deliciosa carne suína ao molho especial', 78.90, true, 1);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Camarão tailandês', '16 camarões grandes ao molho picante', 110, true, 1);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Salada picante com carne grelhada', 'Salada de folhas com cortes finos de carne bovina grelhada e nosso molho especial de pimenta vermelha', 87.20, true, 2);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Garlic Naan', 'Pão tradicional indiano com cobertura de alho', 21, true, 3);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Murg Curry', 'Cubos de frango preparados com molho curry e especiarias', 43, true, 3);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bife Ancho', 'Corte macio e suculento, com dois dedos de espessura, retirado da parte dianteira do contrafilé', 79, true, 4);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('T-Bone', 'Corte muito saboroso, com um osso em formato de T, sendo de um lado o contrafilé e do outro o filé mignon', 89, true, 4);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Sanduíche X-Tudo', 'Sandubão com muito queijo, hamburger bovino, bacon, ovo, salada e maionese', 19, true, 4);
+
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Espetinho de Cupim', 'Acompanha farinha, mandioca e vinagrete', 8, true, 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Servlet.service() for servlet [dispatcherServlet] in
+context with path [] threw exception [Request processing failed;
+nested exception is org.springframework.http.converter.HttpMessageNotWritableException:
+
+Could not write JSON: Infinite recursion (StackOverflowError);
+
+nested exception is com.fasterxml.jackson.databind.JsonMappingException:
+Infinite recursion (StackOverflowError) (through reference chain:
+com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]
+->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]
+->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]
+->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodapi.domain.model.Produto["restaurante"]->com.marvin.easyfoodapi.domain.model.Restaurante["produtos"]->org.hibernate.collection.internal.PersistentBag[0]->com.marvin.easyfoodap
+
+
+
+
+
+
+kubernetes-hands-on-deploy-microservices-to-the-aws-cloud
 
 
 
