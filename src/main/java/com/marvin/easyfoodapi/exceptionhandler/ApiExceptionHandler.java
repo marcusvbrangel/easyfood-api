@@ -4,15 +4,18 @@ import com.marvin.easyfoodapi.domain.exception.EntidadeEmUsoException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeExistenteException;
 import com.marvin.easyfoodapi.domain.exception.EntidadeNaoEcontradaException;
 import com.marvin.easyfoodapi.domain.exception.NegocioException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.lang.Nullable;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.List;
 
 // RFC 7807
 @ControllerAdvice
@@ -86,6 +89,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ProblemType problemType = ProblemType.HTTP_MESSAGE_NOT_READABLE;
         String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
+        Problem problem = this.createProblemBuilder(status, problemType, detail).build();
+        return this.handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(
+        HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ProblemType problemType = ProblemType.HTTP_MEDIA_TYPE_NOT_SUPPORTED;
+        String detail = "Somente o formato de requisição (JSON) é suportado. Verifique o cabeçalho da requisição.";
         Problem problem = this.createProblemBuilder(status, problemType, detail).build();
         return this.handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
     }

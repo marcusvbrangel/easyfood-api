@@ -11,7 +11,8 @@ public enum ProblemType {
     ENTIDADE_EXISTENTE("/entidade-existente", "Entidade existente"),
     ERRO_NEGOCIO("/erro-negocio", "Violação de regra de negócio"),
 
-    HTTP_MESSAGE_NOT_READABLE("/mensagem-nao-legivel", "Mensagem não legivel.");
+    HTTP_MESSAGE_NOT_READABLE("/mensagem-nao-legivel", "Mensagem não legivel."),
+    HTTP_MEDIA_TYPE_NOT_SUPPORTED("/formato-midia-nao-suportado", "Formato de midia não suportado");
 
     private String title;
     private String uri;
