@@ -603,8 +603,6 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 
 
-
-
 insert into produto (nome, restaurante_id) values ('Porco com molho agridoce', 1);
 insert into produto (nome, restaurante_id) values ('Camarão tailandês', 1);
 insert into produto (nome, restaurante_id) values ('Salada picante com carne grelhada', 2);
