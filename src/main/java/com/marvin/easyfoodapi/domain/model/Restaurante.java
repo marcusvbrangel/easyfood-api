@@ -1,12 +1,12 @@
 package com.marvin.easyfoodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -27,7 +27,8 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @NotFound
+    @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)
