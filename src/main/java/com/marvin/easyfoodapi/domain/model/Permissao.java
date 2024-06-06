@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -19,6 +20,7 @@ public class Permissao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String nome;
 

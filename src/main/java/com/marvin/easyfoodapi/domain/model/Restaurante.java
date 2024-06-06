@@ -6,10 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,17 +30,23 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotFound
-    @Column(nullable = false)
+//    @NotNull
+//    @NotEmpty
+    @NotBlank
     private String nome;
 
-    @Column(nullable = false)
+//    @DecimalMin("0")
+    @NotNull
+    @PositiveOrZero
     private BigDecimal taxaFrete;
 
 //    @JsonIgnore
 //    @JsonIgnoreProperties("hibernateLazyInitializer")
+    @Valid
+    @ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
+    @NotNull
     @ManyToOne  //(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cozinha_id", nullable = false)
+    @JoinColumn(name = "cozinha_id")
     private Cozinha cozinha;
 
     @JsonIgnore
@@ -51,7 +60,6 @@ public class Restaurante {
 
     @JsonIgnore
     @UpdateTimestamp
-    @Column(nullable = false)
     private LocalDateTime dataAtualizacao;
 
 //    @JsonIgnore

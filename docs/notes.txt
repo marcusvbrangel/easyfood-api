@@ -82,6 +82,15 @@ https://kind.sigs.k8s.io/
 ========================================================================================
 
 
+Hibernate Validator 8.0.1.Final - Jakarta Bean Validation Reference Implementation: Reference Guide
+https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-bean-constraints
+
+
+
+
+========================================================================================
+
+
 Spring Boot Maven Plugin Documentation
 https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/
 

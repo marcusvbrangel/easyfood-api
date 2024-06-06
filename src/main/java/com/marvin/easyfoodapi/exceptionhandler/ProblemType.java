@@ -11,6 +11,7 @@ public enum ProblemType {
     ENTIDADE_EXISTENTE("/entidade-existente", "Entidade existente."),
     ERRO_NEGOCIO("/erro-negocio", "Violação de regra de negócio."),
     ERRO_DE_SISTEMA("/erro-de-sistema", "Erro de sistema."),
+    DADOS_INVALIDOS("/dados-invalidos", "Dados inválidos"),
 
     HTTP_MESSAGE_NOT_READABLE("/mensagem-nao-legivel", "Mensagem não legivel."),
     HTTP_MEDIA_TYPE_NOT_SUPPORTED("/formato-midia-nao-suportado", "Formato de midia não suportado."),

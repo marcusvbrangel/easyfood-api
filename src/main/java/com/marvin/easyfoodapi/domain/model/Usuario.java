@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +22,15 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String nome;
 
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String email;
 
+    @NotBlank
     @Column(nullable = false)
     private String senha;
 

@@ -1,6 +1,7 @@
 package com.marvin.easyfoodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,12 +26,15 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(nullable = false)
     private BigDecimal subTotal;
 
+    @NotNull
     @Column(nullable = false)
     private BigDecimal taxaFrete;
 
+    @NotNull
     @Column(nullable = false)
     private BigDecimal valorTotal;
 
